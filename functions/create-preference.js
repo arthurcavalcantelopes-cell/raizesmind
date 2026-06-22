@@ -1,5 +1,5 @@
-// functions/create-preference.js - V30
-// V30: PIX nao exclui account_money (MP rejeita) - so exclui cartao+boleto+atm
+// functions/create-preference.js - V31
+// V31: removido default_payment_method_id (conflitava com excluded_payment_types)
 
 const PRICES = {
   "profissional-mensal-cartao":   { title: "Raizes Profissional - Mensal - Cartao",  amount: 149.00 },
@@ -9,8 +9,6 @@ const PRICES = {
   "profissional-fidelidade-1mes": { title: "Raizes Profissional - 1o mes (50% OFF)", amount: 75.00 }
 };
 
-// V30: account_money NAO pode ser excluido pelo MP (retorna 400)
-// Usamos default_payment_method_id pra que PIX abra direto selecionado
 const METHOD_FILTERS = {
   pix: {
     excluded_payment_types: [
@@ -19,8 +17,7 @@ const METHOD_FILTERS = {
       { id: "ticket" },
       { id: "atm" },
       { id: "prepaid_card" }
-    ],
-    default_payment_method_id: "pix"
+    ]
   },
   cartao: {
     excluded_payment_types: [
@@ -36,8 +33,7 @@ const METHOD_FILTERS = {
       { id: "bank_transfer" },
       { id: "atm" },
       { id: "prepaid_card" }
-    ],
-    default_payment_method_id: "bolbradesco"
+    ]
   }
 };
 
